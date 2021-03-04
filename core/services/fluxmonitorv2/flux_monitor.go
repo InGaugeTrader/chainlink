@@ -964,7 +964,7 @@ func (fm *FluxMonitor) submitTransaction(
 	}
 
 	// Update the flux monitor round stats
-	err := fm.orm.UpdateFluxMonitorRoundStats(
+	err = fm.orm.UpdateFluxMonitorRoundStats(
 		fm.contractAddress,
 		roundID,
 		runID,
