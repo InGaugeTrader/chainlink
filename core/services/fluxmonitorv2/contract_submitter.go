@@ -17,14 +17,14 @@ type ContractSubmitter interface {
 // FluxAggregatorContractSubmitter submits the polled answer in an eth tx.
 type FluxAggregatorContractSubmitter struct {
 	flux_aggregator_wrapper.FluxAggregatorInterface
-	orm ORM
+	keyStore KeyStoreInterface
 }
 
 // NewFluxAggregatorContractSubmitter constructs a new NewFluxAggregatorContractSubmitter
-func NewFluxAggregatorContractSubmitter(contract flux_aggregator_wrapper.FluxAggregatorInterface, orm ORM) *FluxAggregatorContractSubmitter {
+func NewFluxAggregatorContractSubmitter(contract flux_aggregator_wrapper.FluxAggregatorInterface, keyStore KeyStoreInterface) *FluxAggregatorContractSubmitter {
 	return &FluxAggregatorContractSubmitter{
 		FluxAggregatorInterface: contract,
-		orm:                     orm,
+		keyStore:                keyStore,
 	}
 }
 
@@ -32,6 +32,7 @@ func NewFluxAggregatorContractSubmitter(contract flux_aggregator_wrapper.FluxAgg
 // pick up
 func (c *FluxAggregatorContractSubmitter) Submit(roundID *big.Int, submission *big.Int) error {
 	// fromAddress, err := c.orm.GetRoundRobinAddress()
+	// roundIDArg := utils.EVMWordUint64(uint64(roundID))
 
 	_, err := c.FluxAggregatorInterface.Submit(&bind.TransactOpts{
 		// From: fromAddress,
@@ -43,6 +44,17 @@ func (c *FluxAggregatorContractSubmitter) Submit(roundID *big.Int, submission *b
 
 	// return nil
 }
+
+// func (c *BoundContract) Transact(opts *TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+// 	// Otherwise pack up the parameters and invoke the contract
+// 	input, err := c.abi.Pack(method, params...)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	// todo(rjl493456442) check the method is payable or not,
+// 	// reject invalid transaction at the first place
+// 	return c.transact(opts, &c.address, input)
+// }
 
 // TransactOpts is the collection of authorization data required to create a
 // valid Ethereum transaction.
