@@ -77,7 +77,12 @@ func (f fluxMonitorFactory) New(
 		return nil, err
 	}
 
-	contractSubmitter := NewFluxAggregatorContractSubmitter(fluxAggregator, f.keyStore)
+	contractSubmitter := NewFluxAggregatorContractSubmitter(
+		fluxAggregator,
+		f.orm,
+		f.keyStore,
+		cfg.EthGasLimit,
+	)
 
 	// Set up the contract flags
 	flags, err := NewFlags(cfg.FlagsContractAddress, f.ethClient)
