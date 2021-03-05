@@ -112,7 +112,7 @@ beforeAll(async () => {
   node1Address = clClient1.getAdminInfo()[0].address
   const keys = clClient2.getAdminInfo()
   for (let i = 0; i < keys.length; i++) {
-    if (keys[i].address != node1Address) {
+    if (keys[i].address != node1Address && !keys[i].isFunding) {
       node2Address = keys[i].address
     }
   }

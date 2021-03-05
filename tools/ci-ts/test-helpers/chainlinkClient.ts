@@ -15,6 +15,7 @@ interface KeyInfo {
   address: string
   ethBalance: ethers.utils.BigNumber
   linkBalance: ethers.utils.BigNumber
+  isFunding: boolean
 }
 
 export default class ChainlinkClient {
