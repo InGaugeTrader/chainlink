@@ -110,7 +110,7 @@ beforeAll(async () => {
   clClient1.login()
   clClient2.login()
   node1Address = clClient1.newEthKey().address
-  node2Address = clClient1.newEthKey().address
+  node2Address = clClient2.newEthKey().address
   // const keys = clClient2.getAdminInfo()
   // for (let i = 0; i < keys.length; i++) {
   //   if (keys[i].address != node1Address && !keys[i].isFunding) {
