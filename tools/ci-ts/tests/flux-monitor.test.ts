@@ -198,6 +198,7 @@ describe('FluxMonitor / FluxAggregator integration with one node', () => {
     // create FM job
     fluxMonitorJob.initiators[0].params.address = fluxAggregator.address
     fluxMonitorJob.initiators[0].params.feeds = [EXTERNAL_ADAPTER_URL]
+    fluxMonitorJob.tasks[2].params.fromAddress = node1Address
     clClient1.createJob(JSON.stringify(fluxMonitorJob))
     assert.equal(clClient1.getJobs().length, initialJobCount + 1)
 
