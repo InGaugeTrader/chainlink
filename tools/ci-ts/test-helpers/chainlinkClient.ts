@@ -71,6 +71,10 @@ export default class ChainlinkClient {
     return this.execute('keys eth list') as KeyInfo[]
   }
 
+  public newEthKey(): KeyInfo {
+    return this.execute('keys eth create') as KeyInfo
+  }
+
   /**
    * executes chainlink client commands within the docker image
    * @param command the command to pass to the chainlink CLI

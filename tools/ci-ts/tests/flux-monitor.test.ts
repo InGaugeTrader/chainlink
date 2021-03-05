@@ -109,14 +109,19 @@ beforeAll(async () => {
 
   clClient1.login()
   clClient2.login()
-  node1Address = clClient1.getAdminInfo()[0].address
-  const keys = clClient2.getAdminInfo()
-  for (let i = 0; i < keys.length; i++) {
-    if (keys[i].address != node1Address && !keys[i].isFunding) {
-      node2Address = keys[i].address
-    }
-  }
-  console.log(node1Address, node2Address)
+  node1Address = clClient1.newEthKey().address
+  node2Address = clClient1.newEthKey().address
+  // const keys = clClient2.getAdminInfo()
+  // for (let i = 0; i < keys.length; i++) {
+  //   if (keys[i].address != node1Address && !keys[i].isFunding) {
+  //     node2Address = keys[i].address
+  //   }
+  // }
+  console.log('new eth keys', node2Address, node1Address)
+  // assert.isDefined(
+  //   node2Address,
+  //   'Unable to find key valid key to use in' + keys,
+  // )
 
   await t.fundAddress(carol.address)
   await t.fundAddress(node1Address)
